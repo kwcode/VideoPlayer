@@ -1,4 +1,8 @@
-## Welcome to GitHub Pages
+# VideoPlayer
+提供第三方视频播放器的使用方式 DPlayer，CKPlayer
+
+#ckplayer 预览地址 (https://kwcode.github.io/VideoPlayer/)
+## Welcome to GitHub Pages(https://kwcode.github.io/VideoPlayer/)
 
 You can use the [editor on GitHub](https://github.com/kwcode/VideoPlayer/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
