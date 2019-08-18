@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <style>
+        input { outline: 0; }
+        .searchbox { margin-bottom: 5px; }
+        .searchbox .input-name { height: 30px; border: 1px solid #00a892; background: #fff; padding: 2px; font-size: 14px; color: #666; width: 80%; }
+        .searchbox .input-buttom { height: 36px; line-height: 36px; background: #00a892; border: none; color: #fff; font-size: 16px; cursor: pointer; padding-left: 12px; padding-right: 12px; }
+
+        .videobox { height: 400px; }
+
+        /*宽度大于640小于 1200px  */
+        @media screen and (min-width:640px) and (max-width:1200px) {
+            .videobox { height: 500px; }
+        } 
+        @media screen and (min-width:1200px) {
+            .videobox { height: 550px; }
+        }
+    </style>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/hls.min.js"></script>
+    <script src="js/ckplayer/ckplayer.min.js"></script>
+</head>
+<body>
+
+    <div class="searchbox">
+        <input class="input-name" id="txtUrl" value="https://vdnbsy.vcloud.dogecdn.com/vcloud/17/v/20190424/1556036075_818c4125ec9c8cbc7a7a8a7cc1601512/1037/7d515b22c4958598c0fbd1e6290a5ca5.mp4" />
+        <input id="btn" type="button" class="input-buttom" onclick="play()" value="播放">
+    </div>
+    <div>
+        <div id="player1" class="videobox"></div>
+    </div>
+
+    <script>
+
+        function play() {
+            try {
+
+                var url = document.getElementById('txtUrl').value;
+                var videoObject = {
+                    //playerID:'ckplayer01',//播放器ID，第一个字符不能是数字，用来在使用多个播放器时监听到的函数将在所有参数最后添加一个参数用来获取播放器的内容
+                    container: '#player1', //容器的ID或className
+                    variable: 'player', //播放函数名称
+                    //loaded: 'loadedHandler', //当播放器加载后执行的函数
+                    loop: false, //播放结束是否循环播放
+                    //autoplay: true, //是否自动播放
+                    //duration: 500, //设置视频总时间
+                    //cktrack: '<%=VideoPath.Replace(".mp4",".ass")%>', //字幕文件
+
+                    config: '', //指定配置函数
+                    debug: false, //是否开启调试模式
+                    //flashplayer: true, //强制使用flashplayer
+                    drag: 'start', //拖动的属性
+                    seek: 0, //默认跳转的时间
+                    video: [
+                        [url, 'video/mp4', '中文标清', 0],
+                    ]
+                };
+                var player = new ckplayer(videoObject);
+
+                player.videoPlay();
+            } catch (e) {
+                alert("出错了，检查视频是否有问题！\r\n" + e);
+            }
+        }
+    </script>
+</body>
+</html>

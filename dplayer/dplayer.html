@@ -1,0 +1,67 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <style>
+        input { outline: 0; }
+        .searchbox { margin-bottom: 5px; }
+        .searchbox .input-name { height: 30px; border: 1px solid #00a892; background: #fff; padding: 2px; font-size: 14px; color: #666; width: 80%; }
+        .searchbox .input-buttom { height: 36px; line-height: 36px; background: #00a892; border: none; color: #fff; font-size: 16px; cursor: pointer; padding-left: 12px; padding-right: 12px; }
+
+        .videobox { height: 400px; }
+        /*宽度大于640 小于 1200px  */
+        @media screen and (min-width:640px) and (max-width:1200px) {
+            .videobox { height: 500px; }
+        }
+
+        @media screen and (min-width:1200px) {
+            .videobox { height: 550px; }
+        }
+    </style>
+</head>
+<body>
+     
+    <link href="js/dplayer/DPlayer.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/dplayer/hls.min.js"></script>
+    <script src="js/dplayer/DPlayer.min.js"></script>
+
+    <div class="searchbox">
+        <input class="input-name" id="txtUrl" value="https://vdnbsy.vcloud.dogecdn.com/vcloud/17/v/20190424/1556036075_818c4125ec9c8cbc7a7a8a7cc1601512/1037/7d515b22c4958598c0fbd1e6290a5ca5.mp4" />
+        <input id="btn" type="button" class="input-buttom" onclick="play()" value="播放">
+    </div>
+    <div class="videobox">
+        <div id="player1"></div>
+    </div>
+
+    <script>
+        /*hls流-依赖 hls.js
+         * 1=https://ltsdl.qq.com/uwMROfz2r5zIIaQXGdGlG2df644M-O7XrbeOGL6355U2hitK/3dBaenjqCfgTSIFqbAh9ZeV2b2rEbxUV8vJ69vfvaA81b3dvFoud91mKgcK7W-deQCmYlvWCaKucm6lT3sUiWtykxO3LOtN-i-j4flyOzGPpPNDa0IgZxPZbXHTDj77MGUDQKUngc3AmRsINU5DYWz3pPDLypLUwqyWUPDjUdMk/x0202ku483s.321002.ts.m3u8?ver=4
+         *
+         * MP4
+         * https://vdnbsy.vcloud.dogecdn.com/vcloud/17/v/20190424/1556036075_818c4125ec9c8cbc7a7a8a7cc1601512/1037/7d515b22c4958598c0fbd1e6290a5ca5.mp4
+         *
+         * avi-依赖 hls.js
+         *
+         */
+
+        function play() {
+            try {
+
+                var url = document.getElementById('txtUrl').value;
+                var dp = new DPlayer({
+                    element: document.getElementById('player1'),
+                    video: {
+                        url: url,
+                        pic: 'img/load.gif'
+                    }
+                });
+                dp.play();
+            } catch (e) {
+                alert("出错了，检查视频是否有问题！");
+            }
+        }
+    </script>
+</body>
+</html>
